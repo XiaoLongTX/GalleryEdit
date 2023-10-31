@@ -38,6 +38,11 @@ class CommonRecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
         Glide.with(imageView).load(bitMap).into(imageView)
     }
 
+    fun setImageRes(viewId: Int, resid: Int) {
+        val imageView = itemView.findViewById<ImageView>(viewId)
+        Glide.with(imageView).load(resid).into(imageView)
+    }
+
     fun getItemView():View{
         return itemView
     }
