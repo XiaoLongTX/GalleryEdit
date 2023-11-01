@@ -39,7 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ScanVideoActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".scanvideo.ScanVideoActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

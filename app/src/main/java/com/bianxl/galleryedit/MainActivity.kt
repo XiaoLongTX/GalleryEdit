@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bianxl.galleryedit.common.ItemSpacingDecoration
+import com.bianxl.galleryedit.scanvideo.ScanVideoActivity
 import com.trionesble.smart.remote.ui.adapter.CommonRecyclerViewHolder
 import com.trionesble.smart.remote.ui.adapter.CommonSingleTypeAdapter
 
