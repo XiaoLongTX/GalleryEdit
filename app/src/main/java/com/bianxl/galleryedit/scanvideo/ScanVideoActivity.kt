@@ -76,7 +76,7 @@ class ScanVideoActivity : FragmentActivity(), EasyPermissions.PermissionCallback
                     arguments = Bundle().apply {
                         this.putInt(
                             "video_level", when (position) {
-                                0 -> VideoUtils.LEVEL_MIN
+                                2 -> VideoUtils.LEVEL_MIN
                                 1 -> VideoUtils.LEVEL_MID
                                 else -> VideoUtils.LEVEL_MAX
                             }
@@ -90,7 +90,7 @@ class ScanVideoActivity : FragmentActivity(), EasyPermissions.PermissionCallback
             tab, pager
         ) { tab, position ->
             tab.text = when (position) {
-                0 -> "低画质"
+                2 -> "低画质"
                 1 -> "中画质"
                 else -> "高画质"
             }

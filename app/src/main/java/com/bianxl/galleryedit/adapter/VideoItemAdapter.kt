@@ -26,10 +26,10 @@ class VideoItemAdapter(context: Context, layoutId: Int, recyclerView: RecyclerVi
         )
         helper.setText(R.id.video_name, item.name)
         helper.setText(R.id.vide_width_heigh, "${item.width} * ${item.height}")
-        helper.setText(
-            R.id.video_bitrate,
-            "码率:${String.format("%.2f", item.bitrate)}M/s"
-        )
+//        helper.setText(
+//            R.id.video_bitrate,
+//            "码率:${String.format("%.2f", item.bitrate)}M/s"
+//        )
         helper.setText(
             R.id.video_durition,
             "${String.format("%.1f", item.duration)}s / ${

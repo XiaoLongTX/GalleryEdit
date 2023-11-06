@@ -38,14 +38,14 @@
             android:textSize="12sp"
             tools:text="11:11" />
 
-        <TextView
-            android:id="@+id/video_bitrate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="middle"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/video_bitrate"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:ellipsize="middle"-->
+<!--            android:singleLine="true"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="12sp" />-->
 
         <TextView
             android:id="@+id/vide_width_heigh"

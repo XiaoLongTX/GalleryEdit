@@ -51,7 +51,7 @@ android {
                     this.outputs.filterIsInstance<com.android.build.gradle.internal.api.ApkVariantOutputImpl>()
                         .forEach {
                             it.outputFileName =
-                                 "${defaultConfig.applicationId}_${defaultConfig.versionName}_$buildType.apk"
+                                 "${getLocalProperty("apkname")?.toString()}_${defaultConfig.versionName}_$buildType.apk"
                         }
                 }
             }
