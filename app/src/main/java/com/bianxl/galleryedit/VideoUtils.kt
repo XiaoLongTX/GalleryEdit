@@ -1,10 +1,8 @@
 package com.bianxl.galleryedit
 
 import android.app.Activity
-import android.app.RecoverableSecurityException
 import android.content.ContentUris
 import android.content.Context
-import android.content.IntentSender
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.MediaScannerConnection
@@ -129,7 +127,12 @@ object VideoUtils {
         return videoList
     }
 
-    fun deleteVideo(activity: Activity, video: Video, callback: (path: String) -> Unit) {
+    fun deleteVideo(
+        activity: Activity,
+        video: Video,
+        callback: (path: String) -> Unit,
+        securityCallback: (exception: SecurityException) -> Unit = {}
+    ) {
         Log.d(TAG, "deleteVideo:${video.path}")
         val mContentResolver = activity.contentResolver
         try {
@@ -139,32 +142,7 @@ object VideoUtils {
             Log.d(TAG, "DeleteImage result:$result")
             callback.invoke(video.path)
         } catch (exception: SecurityException) {
-            // 若启用了分区存储，上面代码delete将会报错，显示没有权限。
-            // 需要捕获这个异常，并用下面代码，使用startIntentSenderForResult弹出弹窗向用户请求修改当前图片的权限
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                val recoverableSecurityException: RecoverableSecurityException =
-                    if (exception is RecoverableSecurityException) {
-                        exception
-                    } else {
-                        throw RuntimeException(exception.message, exception)
-                    }
-                val intentSender = recoverableSecurityException.userAction.actionIntent.intentSender
-                try {
-                    activity.startIntentSenderForResult(
-                        intentSender,
-                        REQUEST_CODE_DELETE_VIDEO,
-                        null,
-                        0,
-                        0,
-                        0,
-                        null
-                    )
-                } catch (e: IntentSender.SendIntentException) {
-                    e.printStackTrace()
-                }
-            } else {
-                throw RuntimeException(exception.message, exception)
-            }
+            securityCallback.invoke(exception)
         }
     }
 

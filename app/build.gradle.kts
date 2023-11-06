@@ -1,7 +1,11 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
+fun getLocalProperty(key: String) = gradleLocalProperties(rootDir).getProperty(key)
+
 
 android {
     namespace = "com.bianxl.galleryedit"
@@ -20,13 +24,37 @@ android {
         }
     }
 
+    signingConfigs {
+        create("MySigningConfig") {
+            storeFile = file(getLocalProperty("keypath") ?: "")
+            keyAlias = getLocalProperty("keyAlias")?.toString()
+            keyPassword = getLocalProperty("keyPassword")?.toString()
+            storePassword = getLocalProperty("storePassword")?.toString()
+            enableV1Signing = true
+            enableV2Signing = true
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = signingConfigs["MySigningConfig"]
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // 输出类型
+            android.applicationVariants.all {
+                // 编译类型
+                val buildType = this.buildType.name
+                if (buildType == "release") {
+                    this.outputs.filterIsInstance<com.android.build.gradle.internal.api.ApkVariantOutputImpl>()
+                        .forEach {
+                            it.outputFileName =
+                                 "${defaultConfig.applicationId}_${defaultConfig.versionName}_$buildType.apk"
+                        }
+                }
+            }
         }
     }
     compileOptions {

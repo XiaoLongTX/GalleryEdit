@@ -85,7 +85,7 @@ class VideoTransformerUtil(val context: Context) {
         progressDialog = ProgressDialog(context)
         progressDialog?.setMessage("正在压缩视频...")
         progressDialog?.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL)
-        progressDialog?.setProgressDrawable(context.resources.getDrawable(R.drawable.progressbar_bg))
+        progressDialog?.setProgressDrawable(context.getDrawable(R.drawable.progressbar_bg))
         progressDialog?.isIndeterminate = false // 设置为确定模式
         progressDialog?.setCancelable(false)
         progressDialog?.max = 100 // 进度条最大值
