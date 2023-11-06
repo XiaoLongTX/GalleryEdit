@@ -16,7 +16,7 @@ android {
         minSdk = 24
         targetSdk = 33
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -51,7 +51,7 @@ android {
                     this.outputs.filterIsInstance<com.android.build.gradle.internal.api.ApkVariantOutputImpl>()
                         .forEach {
                             it.outputFileName =
-                                 "${defaultConfig.applicationId}_${defaultConfig.versionName}_$buildType.apk"
+                                 "${getLocalProperty("apkname")?.toString()}_${defaultConfig.versionName}_$buildType.apk"
                         }
                 }
             }
